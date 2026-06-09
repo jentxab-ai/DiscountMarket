@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/customerNameText"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#1E1E1E"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:text="مبلغ تخفیف را وارد کنید"
+        android:textSize="14sp"
+        android:textColor="#757575"
+        android:layout_marginBottom="24dp"/>
+
+    <EditText
+        android:id="@+id/amountInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="مبلغ به تومان (مثلاً ۵۰۰۰۰)"
+        android:inputType="number"
+        android:textColor="#1E1E1E"
+        android:backgroundTint="#C0C0C0"
+        android:layout_marginBottom="24dp"/>
+
+    <Button
+        android:id="@+id/generateBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="صدور تخفیف"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#1E1E1E"/>
+
+</LinearLayout>
