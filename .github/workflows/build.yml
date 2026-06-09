@@ -18,8 +18,10 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Setup Gradle
+    - name: Setup Gradle (no cache)
       uses: gradle/actions/setup-gradle@v3
+      with:
+        cache-disabled: true
 
     - name: Build APK
       run: gradle assembleRelease
