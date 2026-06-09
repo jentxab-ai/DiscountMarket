@@ -8,8 +8,6 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.discountmarket.R
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,40 +30,20 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val email = "${phone}@discountmarket.app"
-            val auth = FirebaseAuth.getInstance()
-
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val userId = task.result?.user?.uid ?: ""
-
-                        FirebaseFirestore.getInstance()
-                            .collection("users")
-                            .document(userId)
-                            .get()
-                            .addOnSuccessListener { doc ->
-                                val userType = doc.getString("type")
-
-                                if (userType == type) {
-                                    val intent = when (userType) {
-                                        "store" -> Intent(this, StoreDashboardActivity::class.java)
-                                        "customer" -> Intent(this, CustomerDashboardActivity::class.java)
-                                        "admin" -> Intent(this, AdminPanelActivity::class.java)
-                                        else -> null
-                                    }
-                                    if (intent != null) {
-                                        startActivity(intent)
-                                        finish()
-                                    }
-                                } else {
-                                    Toast.makeText(this, "نوع کاربری اشتباه است", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                    } else {
-                        Toast.makeText(this, "اطلاعات وارد شده صحیح نیست", Toast.LENGTH_SHORT).show()
-                    }
+            // ورود ساده بدون Firebase برای تست
+            if (password.length >= 3) {
+                val intent = when (type) {
+                    "store" -> Intent(this, StoreDashboardActivity::class.java)
+                    "customer" -> Intent(this, CustomerDashboardActivity::class.java)
+                    else -> null
                 }
+                if (intent != null) {
+                    startActivity(intent)
+                    finish()
+                }
+            } else {
+                Toast.makeText(this, "رمز عبور حداقل ۳ کاراکتر باشد", Toast.LENGTH_SHORT).show()
+            }
         }
 
         registerBtn.setOnClickListener {
