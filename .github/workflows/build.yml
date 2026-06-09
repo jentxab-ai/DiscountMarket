@@ -27,13 +27,15 @@ jobs:
     - name: Build APK
       run: gradle assembleRelease
 
-    - name: Copy APK
-      run: cp app/build/outputs/apk/release/app-release.apk ./app-release.apk
+    - name: Find and Copy APK
+      run: |
+        find . -name "*.apk" -type f
+        cp $(find . -name "*.apk" -type f | head -1) ./DiscountMarket.apk
 
     - name: Push APK
       run: |
         git config user.name "github-actions"
         git config user.email "actions@github.com"
-        git add app-release.apk
+        git add DiscountMarket.apk
         git commit -m "Add APK" || echo "No changes"
         git push
