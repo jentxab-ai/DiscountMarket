@@ -1,13 +1,13 @@
-name: Build APK
+name: Build and Upload APK
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
     - uses: actions/checkout@v4
@@ -27,8 +27,13 @@ jobs:
     - name: Build APK
       run: gradle assembleRelease
 
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: app-release
-        path: app/build/outputs/apk/release/app-release.apk
+    - name: Copy APK
+      run: cp app/build/outputs/apk/release/app-release.apk ./app-release.apk
+
+    - name: Push APK
+      run: |
+        git config user.name "github-actions"
+        git config user.email "actions@github.com"
+        git add app-release.apk
+        git commit -m "Add APK" || echo "No changes"
+        git push
