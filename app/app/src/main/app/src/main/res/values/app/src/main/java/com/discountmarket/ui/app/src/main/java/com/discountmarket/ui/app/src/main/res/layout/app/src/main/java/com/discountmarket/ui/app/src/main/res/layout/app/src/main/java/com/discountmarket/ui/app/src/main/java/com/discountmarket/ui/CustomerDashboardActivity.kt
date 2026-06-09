@@ -12,13 +12,7 @@ class CustomerDashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_dashboard)
 
-        findViewById<TextView>(R.id.welcomeText).text = "خوش آمدید، مشتری"
-        findViewById<TextView>(R.id.walletBalanceText).text = "کیف پول: ۰ تومان"
-        findViewById<TextView>(R.id.uniqueIdText).text = "شناسه: DM-0000-00000"
-
-        findViewById<Button>(R.id.marketplaceBtn).setOnClickListener {
-            startActivity(Intent(this, MarketplaceActivity::class.java))
-        }
+        findViewById<TextView>(R.id.welcomeText).text = "داشبورد مشتری"
         findViewById<Button>(R.id.logoutBtn).setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
