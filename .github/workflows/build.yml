@@ -27,10 +27,8 @@ jobs:
     - name: Build APK
       run: gradle assembleDebug
 
-    - name: Find and Copy APK
-      run: |
-        find . -name "*.apk" -type f
-        cp $(find . -name "*.apk" -type f | head -1) ./app-debug.apk
+    - name: Copy APK
+      run: cp app/build/outputs/apk/debug/app-debug.apk ./app-debug.apk
 
     - name: Push APK
       run: |
