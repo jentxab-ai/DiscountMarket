@@ -12,14 +12,7 @@ class StoreDashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_store_dashboard)
 
-        findViewById<TextView>(R.id.welcomeText).text = "خوش آمدید، فروشگاه"
-        
-        findViewById<Button>(R.id.generateDiscountBtn).setOnClickListener {
-            startActivity(Intent(this, QrScannerActivity::class.java))
-        }
-        findViewById<Button>(R.id.marketplaceBtn).setOnClickListener {
-            startActivity(Intent(this, MarketplaceActivity::class.java))
-        }
+        findViewById<TextView>(R.id.welcomeText).text = "داشبورد فروشگاه"
         findViewById<Button>(R.id.logoutBtn).setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
