@@ -63,6 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ثبت‌نام"
-        android:textColor="#1E1E1E"/>
+        android:textColor="#1E1E1E"
+        android:backgroundTint="#E0E0E0"/>
 
 </LinearLayout>
